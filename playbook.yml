@@ -8,11 +8,7 @@
   hosts: webserver_nodes
   become: yes
   roles: 
-  - configure_webservers
+  - nginx
 
-# - name: Création du volume block storage
-#   hosts: localhost
-#   become: yes
-#   roles: 
-#   - scaleway_volume
+
 
