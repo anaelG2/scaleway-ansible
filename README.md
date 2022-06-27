@@ -1,7 +1,9 @@
 Role Name
 =========
+export ANSIBLE_PRIVATE_KEY_FILE=/home/anaelg/.ssh/id_rsa_projetannuel
+export ANSIBLE_HOST_KEY_CHECKING=False
+export SCW_TOKEN=87be850e-92a0-40ad-95e3-83e46b40fc03
 
-A brief description of the role goes here.
 
 Requirements
 ------------
