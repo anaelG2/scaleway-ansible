@@ -11,14 +11,16 @@ Rôles
   - [prerequisites](roles/prerequisites/)
 
 
+Prérequis
+--------------
+
+Déclaration des variables d'environnement :
+  - `export ANSIBLE_PRIVATE_KEY_FILE=<SSH_KEY>`
+  - `export ANSIBLE_HOST_KEY_CHECKING=False`
+
 
 Utilisation
 --------------
-
-1. Déclaration des variables d'environnement :
-      - `export ANSIBLE_PRIVATE_KEY_FILE=/home/anaelg/.ssh/id_rsa_projetannuel`
-      - `export ANSIBLE_HOST_KEY_CHECKING=False`
-      - `export SCW_TOKEN=87be850e-92a0-40ad-95e3-83e46b40fc03`
 
 1. Configurer vos serveurs cibles via le fichier inventory.yml
 
