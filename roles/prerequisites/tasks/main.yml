@@ -1,5 +1,0 @@
-- name: Install php  (state=present is optional)
-  ansible.builtin.apt:
-    name: php
-    state: present
-
