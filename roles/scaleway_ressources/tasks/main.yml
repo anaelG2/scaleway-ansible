@@ -1,0 +1,17 @@
+---
+# tasks file for roles/scaleway_ressources
+
+- name: Test du cycle de vie de la clé SSH sur le compte Scaleway
+  hosts: localhost
+  gather_facts: no
+  environment:
+    SCW_API_KEY: ""
+
+  tasks:
+    - scaleway_sshkey:
+        ssh_pub_key: "{{ ssh_pub_key }}"
+        state: present
+      register: result
+    - assert:
+        that:
+          - result is success and result is changed

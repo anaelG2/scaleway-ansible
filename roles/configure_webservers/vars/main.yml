@@ -1,0 +1,7 @@
+---
+# vars file for roles/configure_webservers
+
+scw_org: "6f2db06c-78f0-4b7b-8ec0-ffda407257b1"
+scw_token: "87be850e-92a0-40ad-95e3-83e46b40fc03"
+ansible_user: "root"
+domain: "projet-annuel"

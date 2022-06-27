@@ -1,0 +1,18 @@
+- name: Préparation des hôtes
+  hosts: webserver_nodes
+  become: yes
+  roles: 
+  - prerequisites
+
+- name: Installation et configuration du serveur web nginx
+  hosts: webserver_nodes
+  become: yes
+  roles: 
+  - configure_webservers
+
+# - name: Création du volume block storage
+#   hosts: localhost
+#   become: yes
+#   roles: 
+#   - scaleway_volume
+

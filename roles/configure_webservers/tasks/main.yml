@@ -1,0 +1,80 @@
+---
+# tasks file for roles/configure_webservers
+
+- name: "apt-get update"
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: "install nginx"
+  apt:
+    name: ['nginx']
+    state: latest
+
+#- name: "delete wrong file"
+#  command: "rm /etc/nginx/sites-enabled/projet-annuel"
+
+# - name: Création du répertoire du site
+#   file:
+#     path: /var/www/{{ domain }}
+#     state: directory
+#     mode: '0775'
+#     owner: "{{ ansible_user }}"
+#     group: "{{ ansible_user }}"
+
+- name: Create a directory if it does not exist
+  file:
+    path: /var/www/"{{ domain }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+
+- name: Suppression du répertoire par default nginx 
+  file:
+    path: /etc/nginx/sites-enabled/default*
+    state: absent
+  notify: restart_nginx
+
+- meta : flush_handlers
+
+- name: copy nginx site.conf
+  template:
+    src: site.conf.j2
+    dest: /etc/nginx/sites-enabled/"{{ domain }}"/site.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: restart_nginx
+
+
+
+
+- name: copy nginx site.conf
+  template:
+    src: index.html.j2
+    dest: /var/www/"{{ domain }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+  notify: restart_nginx
+
+
+
+- meta : flush_handlers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
