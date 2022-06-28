@@ -22,7 +22,7 @@ Déclaration des variables d'environnement :
 Utilisation
 --------------
 
-1. Configurer vos serveurs cibles via le fichier inventory.yml
+1. Configurer vos serveurs cibles via le fichier inventaire
 
 2. Personnaliser le playbook en modifiant les valeures des fichier vars/main.yml des différents rôles
 
