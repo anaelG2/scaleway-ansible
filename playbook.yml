@@ -1,11 +1,11 @@
-- name: Préparation des hôtes
-  hosts: localhost
-  become: yes
-  roles: 
-  - prerequisites
+# - name: Préparation des hôtes
+#   hosts: webserver_nodes
+#   become: yes
+#   roles: 
+#   - prerequisites
 
 - name: Installation et configuration du serveur web nginx
-  hosts: localhost
+  hosts: webserver_nodes
   become: yes
   roles: 
   - nginx

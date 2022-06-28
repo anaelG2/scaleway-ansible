@@ -1,47 +1,40 @@
 ---
 # tasks file for roles/configure_webservers
 
-- name: "install nginx"
+- name: Installation de nginx et php
   apt:
-    name: ['nginx']
+    name: ['nginx','php-fpm']
     state: latest
 
 
-- name: Création du répertoire du site
-  file:
-    path: /var/www/{{ domain }}
-    state: directory
-    mode: '0775'
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+
+# - name: Copie des fichiers web
+#   file:
+#     src: index.html
+#     dest: /var/www/index.html
+#     mode: preserve
+#     state: present
+#   notify: restart_nginx
 
 
-- name: Suppression du répertoire par default nginx 
-  file:
-    path: /etc/nginx/sites-enabled/default
-    state: absent
+- name: Application du template de configuration nginx
+  template:
+    src: site.conf.j2
+    dest: /etc/nginx/sites-available/default
   notify: restart_nginx
+
+- name: Activation du nouveau site
+  file:
+    src: /etc/nginx/sites-available/default
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+  notify: Restart Nginx
 
 - meta : flush_handlers
 
-- name: copy nginx site.conf
-  template:
-    src: site.conf.j2
-    dest: /etc/nginx/sites-enabled/{{ domain }}.conf
-    owner: root
-    group: root
-    mode: '0644'
-  notify: restart_nginx
 
 
-- name: copy nginx site.conf
-  template:
-    src: index.html.j2
-    dest: /var/www/{{ domain }}/index.html
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    mode: '0644'
-  notify: restart_nginx
+
 
 
 - meta : flush_handlers

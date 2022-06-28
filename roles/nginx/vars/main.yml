@@ -2,4 +2,5 @@
 # vars file for roles/configure_webservers
 
 ansible_user: "root"
+http_port: "80"
 domain: "projet-annuel"
